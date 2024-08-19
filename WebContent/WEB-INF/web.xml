@@ -1,0 +1,14 @@
+<web-app>
+	<servlet>
+		<servlet-name>SimpleServlet</servlet-name>
+		<servlet-class>simpleservlet.SimpleServlet</servlet-class>
+		<init-param>
+			<param-name>folder</param-name>
+			<param-value>C:\temp\logs\</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SimpleServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+</web-app>
