@@ -1,14 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app>
-	<servlet>
-		<servlet-name>SimpleServlet</servlet-name>
-		<servlet-class>simpleservlet.SimpleServlet</servlet-class>
+
+	<filter>
+		<filter-name>SimpleServletFilter</filter-name>
+		<filter-class>simpleservlet.SimpleServletFilter</filter-class>
 		<init-param>
 			<param-name>folder</param-name>
 			<param-value>C:\temp\logs\</param-value>
 		</init-param>
+		<init-param>
+			<param-name>buffer-size</param-name>
+			<param-value>4096</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SimpleServletFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>SimpleServlet</servlet-name>
+		<servlet-class>simpleservlet.SimpleServlet</servlet-class>
+		<multipart-config>
+			<location>C:\temp\</location>
+		</multipart-config>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SimpleServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
 </web-app>
