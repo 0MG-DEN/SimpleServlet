@@ -20,3 +20,10 @@ $stream.Close()
 $response = $request.GetResponse()
 $response
 ```
+```html
+<form action="http://localhost:8080/simpleservlet/" method="post" enctype="multipart/form-data">
+    <p><input type="text" name="text">
+    <p><input type="file" name="file">
+    <p><button type="submit">Submit</button>
+</form>
+```
