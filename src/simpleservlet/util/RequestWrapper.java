@@ -6,28 +6,14 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class RequestWrapper extends HttpServletRequestWrapper {
-	private final byte[] content;
+	private final String contentPath;
 
-	public RequestWrapper(HttpServletRequest request, int bufferSize) throws IOException {
+	public RequestWrapper(HttpServletRequest request, String contentPath) {
 		super(request);
-
-		ServletInputStream inputStream = request.getInputStream();
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-		byte[] buffer = new byte[bufferSize];
-		int length;
-
-		while ((length = inputStream.read(buffer)) != -1)
-			outputStream.write(buffer, 0, length);
-
-		outputStream.flush();
-		content = outputStream.toByteArray();
-
-		inputStream.close();
-		outputStream.close();
+		this.contentPath = contentPath;
 	}
 
-	public ServletInputStream getInputStream() {
-		return new RequestStreamWrapper(content);
+	public ServletInputStream getInputStream() throws FileNotFoundException {
+		return new RequestStreamWrapper(this.contentPath);
 	}
 }

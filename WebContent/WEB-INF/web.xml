@@ -8,10 +8,6 @@
 			<param-name>folder</param-name>
 			<param-value>C:\temp\logs\</param-value>
 		</init-param>
-		<init-param>
-			<param-name>buffer-size</param-name>
-			<param-value>4096</param-value>
-		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>SimpleServletFilter</filter-name>
