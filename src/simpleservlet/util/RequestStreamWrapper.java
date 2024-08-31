@@ -13,39 +13,39 @@ public class RequestStreamWrapper extends ServletInputStream {
 	}
 
 	public int read(byte[] b) throws IOException {
-		return this.stream.read(b);
+		return stream.read(b);
 	}
 
 	public int read(byte[] b, int off, int len) throws IOException {
-		return this.stream.read(b, off, len);
+		return stream.read(b, off, len);
 	}
 
 	public long skip(long n) throws IOException {
-		return this.stream.skip(n);
+		return stream.skip(n);
 	}
 
 	public int available() throws IOException {
-		return this.stream.available();
+		return stream.available();
 	}
 
 	public void close() throws IOException {
 		super.close();
-		this.stream.close();
+		stream.close();
 	}
 
 	public synchronized void mark(int readlimit) {
-		this.stream.mark(readlimit);
+		stream.mark(readlimit);
 	}
 
 	public synchronized void reset() throws IOException {
-		this.stream.reset();
+		stream.reset();
 	}
 
 	public boolean markSupported() {
-		return this.stream.markSupported();
+		return stream.markSupported();
 	}
 
 	public int read() throws IOException {
-		return this.stream.read();
+		return stream.read();
 	}
 }

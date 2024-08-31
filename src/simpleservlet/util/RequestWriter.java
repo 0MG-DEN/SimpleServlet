@@ -19,24 +19,24 @@ public class RequestWriter {
 	}
 
 	private File getQueryFile() {
-		String name = String.format("%s.query", this.filename);
-		return this.folder.resolve(name).toFile();
+		String name = String.format("%s.query", filename);
+		return folder.resolve(name).toFile();
 	}
 
 	private File getHeadersFile() {
-		String name = String.format("%s.headers", this.filename);
-		return this.folder.resolve(name).toFile();
+		String name = String.format("%s.headers", filename);
+		return folder.resolve(name).toFile();
 	}
 
 	private File getContentFile() {
-		String name = String.format("%s.content", this.filename);
-		return this.folder.resolve(name).toFile();
+		String name = String.format("%s.content", filename);
+		return folder.resolve(name).toFile();
 	}
 
 	public String writeQuery() throws IOException {
 		File file = getQueryFile();
 
-		Map<String, String[]> map = this.request.getParameterMap();
+		Map<String, String[]> map = request.getParameterMap();
 
 		if (map != null) {
 			try (ExtendedtFileWriter writer = new ExtendedtFileWriter(file)) {
@@ -53,12 +53,12 @@ public class RequestWriter {
 	public String writeHeaders() throws IOException {
 		File file = getHeadersFile();
 
-		List<String> names = Collections.list(this.request.getHeaderNames());
+		List<String> names = Collections.list(request.getHeaderNames());
 
 		try (ExtendedtFileWriter writer = new ExtendedtFileWriter(file)) {
 			for (String name : names) {
 				writer.appendFormat("%s:", name);
-				writer.appendJoin(";", this.request.getHeaders(name));
+				writer.appendJoin(";", request.getHeaders(name));
 			}
 		}
 
@@ -71,7 +71,7 @@ public class RequestWriter {
 		File file = getContentFile();
 
 		try (ExtendedtFileWriter writer = new ExtendedtFileWriter(file)) {
-			try (ServletInputStream stream = this.request.getInputStream()) {
+			try (ServletInputStream stream = request.getInputStream()) {
 				writer.write(stream);
 			}
 		}

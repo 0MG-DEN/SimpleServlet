@@ -14,6 +14,6 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 	}
 
 	public ServletInputStream getInputStream() throws FileNotFoundException {
-		return new RequestStreamWrapper(this.contentPath);
+		return new RequestStreamWrapper(contentPath);
 	}
 }

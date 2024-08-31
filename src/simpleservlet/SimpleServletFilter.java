@@ -44,7 +44,7 @@ public class SimpleServletFilter implements Filter {
 			throws IOException, ServletException {
 		String filename = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SS").format(new Date());
 
-		RequestWriter writer = new RequestWriter((HttpServletRequest) request, filename, this.folder);
+		RequestWriter writer = new RequestWriter((HttpServletRequest) request, filename, folder);
 
 		String queryPath = writer.writeQuery();
 		request.setAttribute(QUERY_PATH_ATTR, queryPath);
