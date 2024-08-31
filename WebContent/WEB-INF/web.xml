@@ -15,15 +15,15 @@
 	</filter-mapping>
 
 	<servlet>
-		<servlet-name>SimpleServlet</servlet-name>
-		<servlet-class>simpleservlet.SimpleServlet</servlet-class>
+		<servlet-name>SimpleServlet-Default</servlet-name>
+		<servlet-class>simpleservlet.Default</servlet-class>
 		<multipart-config>
 			<location>C:\temp\</location>
 		</multipart-config>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>SimpleServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<servlet-name>SimpleServlet-Default</servlet-name>
+		<url-pattern>/default</url-pattern>
 	</servlet-mapping>
 
 </web-app>
