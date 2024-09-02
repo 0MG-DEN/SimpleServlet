@@ -15,6 +15,15 @@
 	</filter-mapping>
 
 	<servlet>
+		<servlet-name>SimpleServlet-DumpMedia</servlet-name>
+		<servlet-class>simpleservlet.DumpMedia</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SimpleServlet-DumpMedia</servlet-name>
+		<url-pattern>/dumpmedia</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>SimpleServlet-Default</servlet-name>
 		<servlet-class>simpleservlet.Default</servlet-class>
 		<multipart-config>
