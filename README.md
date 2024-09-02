@@ -4,26 +4,37 @@ Tomcat may redirect requests sent with partial URLs, i.e.
 `http://localhost:8080/simpleservlet/`.
 Redirected request method may change to `GET`, losing original content.
 
-* Script to send `POST` request with PowerShell 1.0:
+* Function to send HTTP requests with PowerShell 1.0:
 
 ```powershell
-$body = [System.Text.Encoding]::UTF8.GetBytes("body")
+function Send-Request ([string] $url, [string] $method = "GET", [byte[]] $content = $null, [string] $contentType = $null) {
+    $request = [System.Net.WebRequest]::Create($url)
+    $request.Method = $method
 
-$request = [System.Net.WebRequest]::Create("http://localhost:8080/simpleservlet/")
-$request.Method = "POST"
-$request.ContentType = "application/octet-stream"
-$request.ContentLength = $body.Length
+    if ($method -ieq "POST" -and $content -ne $null) {
+        $request.ContentType = $contentType
+        $request.ContentLength = $content.Length
 
-$stream = $request.GetRequestStream()
-$stream.Write($body, 0, $body.Length)
-$stream.Flush()
-$stream.Close()
-
-$response = $request.GetResponse()
-$response
+        $stream = $request.GetRequestStream()
+        $stream.Write($content, 0, $content.Length)
+        $stream.Flush()
+        $stream.Close()
+    }
+    try {
+        $response = $request.GetResponse()
+        $stream = $response.GetResponseStream()
+        $reader = New-Object -TypeName "System.IO.StreamReader" -ArgumentList $stream
+        $result = $reader.ReadToEnd()
+        $reader.Close()
+    }
+    catch {
+        $result = $_.ToString()
+    }
+    return $result
+}
 ```
 
-* HTML form to send `multipart/form-data` request:
+* HTML form to send `multipart/form-data` requests:
 
 ```html
 <form action="http://localhost:8080/simpleservlet/" method="post" enctype="multipart/form-data">
