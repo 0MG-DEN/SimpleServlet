@@ -1,0 +1,9 @@
+body {
+	font-family: monospace;
+}
+
+form {
+	border: solid 1px black;
+	margin: 1rem;
+	padding-left: 1rem;
+}

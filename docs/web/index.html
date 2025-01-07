@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Send Request</title>
+<link rel="stylesheet" href="assets/stylesheets/styles.css">
+</head>
+<body>
+	<script defer src="assets/javascripts/index.js"></script>
+	<div>
+		<p>
+			<span>Host: </span><input type="text" id="host-input" value="localhost"/>
+		<p>
+			<span>Port: </span><input type="text" id="port-input" value="8080"/>
+			<span>/simpleservlet/</span>
+	</div>
+	<div>
+		<form id="text-form" method="post" enctype="text/plain">
+			<p><label>Body: <input type="text" name="text"></label>
+			<p><button type="submit">Send Request</button>
+		</form>
+		<form id="file-form" method="post" enctype="multipart/form-data">
+			<p><label>Body: <input type="file" name="file"></label>
+			<p><button type="submit">Send Request</button>
+		</form>
+	</div>
+</body>
+</html>
