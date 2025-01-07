@@ -33,6 +33,17 @@ public class RequestWriter {
 		return folder.resolve(name).toFile();
 	}
 
+	private File getPartContentFile(int index) {
+		String name = String.format("%s.content%d", filename, index);
+		return folder.resolve(name).toFile();
+	}
+
+	private void writeStream(File file, Supplier<InputStream, IOException> supplier) throws IOException {
+		try (ExtendedtFileWriter writer = new ExtendedtFileWriter(file); InputStream stream = supplier.get()) {
+			writer.write(stream);
+		}
+	}
+
 	public String writeQuery() throws IOException {
 		File file = getQueryFile();
 
@@ -69,13 +80,25 @@ public class RequestWriter {
 
 	public String writeContent() throws IOException {
 		File file = getContentFile();
-
-		try (ExtendedtFileWriter writer = new ExtendedtFileWriter(file)) {
-			try (ServletInputStream stream = request.getInputStream()) {
-				writer.write(stream);
-			}
-		}
+		writeStream(file, () -> request.getInputStream());
 
 		return file.getAbsolutePath();
+	}
+
+	public void writeContentParts() throws IOException, ServletException {
+		// Multipart content type may contain boundary so check for prefix.
+		String contentType = request.getContentType();
+		if (contentType == null || !contentType.startsWith("multipart/form-data"))
+			return;
+
+		Collection<Part> parts = request.getParts();
+		if (parts == null || parts.isEmpty())
+			return;
+
+		int index = 0;
+		for (Part part : parts) {
+			File file = getPartContentFile(index++);
+			writeStream(file, () -> part.getInputStream());
+		}
 	}
 }

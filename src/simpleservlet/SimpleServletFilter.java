@@ -69,6 +69,8 @@ public class SimpleServletFilter implements Filter {
 		request.setAttribute(HEADERS_PATH_ATTR, headersPath);
 		log("Attribute '%s': %s", HEADERS_PATH_ATTR, headersPath);
 
+		writer.writeContentParts();
+
 		String contentPath = writer.writeContent();
 		request.setAttribute(CONTENT_PATH_ATTR, contentPath);
 		log("Attribute '%s': %s", CONTENT_PATH_ATTR, contentPath);
