@@ -5,6 +5,7 @@
 	<xsl:template match="/">
 		<html>
 			<head>
+				<title>Dump Media</title>
 				<style>
 					body
 					{
@@ -12,9 +13,11 @@
 					}
 					img, video
 					{
+						border: solid 1px white;
+						max-width: 100vw;
+						max-height: 100vh;
 						margin: 0.5rem;
 						padding: 0.5rem;
-						border: solid 1px white;
 					}
 				</style>
 			</head>
