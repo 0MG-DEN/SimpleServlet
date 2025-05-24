@@ -7,6 +7,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 
 import simpleservlet.util.parsing.*;
+import simpleservlet.util.parsing.core.*;
 
 public class RequestTransform implements AutoCloseable {
 	private final BufferedReader reader;
@@ -23,6 +24,7 @@ public class RequestTransform implements AutoCloseable {
 		this.transform = factory.newTransformer(source);
 	}
 
+	@Override
 	public void close() throws IOException {
 		reader.close();
 		writer.close();
@@ -40,7 +42,7 @@ public class RequestTransform implements AutoCloseable {
 			bw.flush();
 			sw.flush();
 			parsed = sw.toString();
-		} catch (ParserException e) {
+		} catch (StateException e) {
 			throw new TransformerException(e);
 		}
 
