@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
 
-	<filter>
-		<filter-name>FilterContent</filter-name>
-		<filter-class>simpleservlet.FilterContent</filter-class>
-	</filter>
+	<!-- Filter Declarations -->
 	<filter>
 		<filter-name>FilterLogger</filter-name>
 		<filter-class>simpleservlet.FilterLogger</filter-class>
@@ -14,23 +11,18 @@
 		</init-param>
 	</filter>
 
-	<filter-mapping>
-		<filter-name>FilterContent</filter-name>
-		<url-pattern>*.css</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>FilterContent</filter-name>
-		<url-pattern>*.js</url-pattern>
-	</filter-mapping>
+	<!-- Filter Mappings -->
 	<filter-mapping>
 		<filter-name>FilterLogger</filter-name>
 		<url-pattern>/default</url-pattern>
 	</filter-mapping>
 
+	<!-- Welcome Files -->
 	<welcome-file-list>
 		<welcome-file>index</welcome-file>
 	</welcome-file-list>
 
+	<!-- Servlet Declarations -->
 	<servlet>
 		<servlet-name>ServletIndex</servlet-name>
 		<jsp-file>/WEB-INF/jsp/index.jsp</jsp-file>
@@ -50,6 +42,7 @@
 		</multipart-config>
 	</servlet>
 
+	<!-- Filter Mapping -->
 	<servlet-mapping>
 		<servlet-name>ServletIndex</servlet-name>
 		<url-pattern>/index</url-pattern>

@@ -13,7 +13,7 @@ public class ServletDumpMedia extends BaseServlet {
 	private void transform(HttpServletRequest request, HttpServletResponse response) throws IOException, TransformerException {
 		response.setContentType("text/html");
 
-		String path = getRealPath("xsl", "dumpmedia.xsl");
+		String path = ResourceHelper.getRealPath(context, "xsl", "dumpmedia.xsl");
 		log("Transformation: %s", path);
 
 		try (RequestTransform t = new RequestTransform(request, response, path)) {

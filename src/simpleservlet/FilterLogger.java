@@ -18,17 +18,17 @@ public class FilterLogger extends BaseFilter {
 	public void init(FilterConfig config) throws ServletException {
 		super.init(config);
 
-		String value;
-		value = config.getInitParameter("folder");
-		value = (value == null) ? System.getProperty("user.dir") : value;
+		String value = config.getInitParameter("folder");
+		if (value == null)
+			value = System.getProperty("user.dir");
 
 		folder = Paths.get(value);
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
 		String filename = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SS").format(new Date());
-		RequestWriter writer = new RequestWriter((HttpServletRequest) request, filename, folder);
+		RequestWriter writer = new RequestWriter(request, filename, folder);
 
 		String queryPath = writer.writeQuery();
 		request.setAttribute("queryPath", queryPath);
@@ -43,7 +43,7 @@ public class FilterLogger extends BaseFilter {
 
 		// Request writer has already read content, so we can't get it anymore.
 		// But we have it saved as a file so wrapper can return file's content.
-		RequestWrapper wrapper = new RequestWrapper((HttpServletRequest) request, contentPath);
+		RequestWrapper wrapper = new RequestWrapper(request, contentPath);
 		chain.doFilter(wrapper, response);
 	}
 }
