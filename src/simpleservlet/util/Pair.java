@@ -1,14 +1,24 @@
 package simpleservlet.util;
 
+/**
+ * Base generic pair class that overrides hash and equality methods.
+ */
 public class Pair<Item1, Item2> {
 	public final Item1 item1;
 	public final Item2 item2;
 
+	/**
+	 * Create new pair with specific items.
+	 *
+	 * @param item1 - First item in pair.
+	 * @param item2 - Second item in pair.
+	 */
 	public Pair(Item1 item1, Item2 item2) {
 		this.item1 = item1;
 		this.item2 = item2;
 	}
 
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		final int hashCode1 = (item1 == null) ? 0 : item1.hashCode();
@@ -19,6 +29,7 @@ public class Pair<Item1, Item2> {
 		return result;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
 			return false;

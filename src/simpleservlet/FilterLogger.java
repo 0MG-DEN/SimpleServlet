@@ -11,6 +11,24 @@ import javax.servlet.http.*;
 import simpleservlet.base.*;
 import simpleservlet.util.*;
 
+/**
+ * <p>
+ * Filter that saves query, headers and content of processed request. Further
+ * chain then receives the {@link simpleservlet.util.RequestWrapper} which
+ * serves as proxy for filters to get request's content.
+ * <p>
+ * Request will have following attributes populated:
+ * <ul>
+ * <li>{@code queryPath} - absolute path to query file;</li>
+ * <li>{@code headersPath} - absolute path to headers file;</li>
+ * <li>{@code contentPath} - absolute path to content file;</li>
+ * </ul>
+ * <p>
+ * For multipart requests each part is saved separately into different file. In
+ * this case {@code contentPath} points to empty file.
+ *
+ * @see simpleservlet.util.RequestWriter
+ */
 public class FilterLogger extends BaseFilter {
 	private Path folder;
 

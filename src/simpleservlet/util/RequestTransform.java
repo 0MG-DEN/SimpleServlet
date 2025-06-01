@@ -9,13 +9,24 @@ import javax.xml.transform.stream.*;
 import simpleservlet.util.parsing.*;
 import simpleservlet.util.parsing.core.*;
 
+/**
+ * Uses {@link simpleservlet.parsing.Parser} to parse request's content.
+ * Extracted XML is then passed to XSL transformation to form a HTML document
+ * which is written to response.
+ */
 public class RequestTransform implements AutoCloseable {
 	private final BufferedReader reader;
 	private final BufferedWriter writer;
 	private final Transformer transform;
 
-	public RequestTransform(HttpServletRequest request, HttpServletResponse response, String path)
-			throws IOException, TransformerException {
+	/**
+	 * Create new transform with specific XSL transformation file.
+	 *
+	 * @param request  - request to parse content of.
+	 * @param response - response to write transformed XML as HTML to.
+	 * @param path     - absolute path to XSL transformation.
+	 */
+	public RequestTransform(HttpServletRequest request, HttpServletResponse response, String path) throws IOException, TransformerException {
 		this.reader = request.getReader();
 		this.writer = new BufferedWriter(response.getWriter());
 
@@ -30,6 +41,9 @@ public class RequestTransform implements AutoCloseable {
 		writer.close();
 	}
 
+	/**
+	 * Parse request's content and pass extracted XML to XSL transformation.
+	 */
 	public void transform() throws IOException, TransformerException {
 		String parsed;
 

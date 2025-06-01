@@ -4,9 +4,19 @@ import java.io.*;
 
 import javax.servlet.*;
 
+/**
+ * Wraps {@link java.io.FileInputStream} of request's content file and proxies
+ * method calls of {@link javax.servlet.ServletInputStream} to this underlying
+ * stream.
+ */
 public class RequestStreamWrapper extends ServletInputStream {
 	private final FileInputStream stream;
 
+	/**
+	 * Create new stream wrapper from specific content file.
+	 *
+	 * @param contentPath - file containing content of request.
+	 */
 	public RequestStreamWrapper(String contentPath) throws FileNotFoundException {
 		super();
 		this.stream = new FileInputStream(contentPath);

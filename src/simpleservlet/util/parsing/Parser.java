@@ -4,17 +4,35 @@ import java.io.*;
 
 import simpleservlet.util.parsing.core.*;
 
+/**
+ * Parser that uses {@link TransitionMap} to parse HTML content of input reader
+ * and write {@code <img>} and {@code <video>} found to output writer.
+ */
 public class Parser {
 	private final BufferedReader reader;
 	private final BufferedWriter writer;
 	private final TransitionMap<Character> map;
 
+	/**
+	 * Create new parser.
+	 * 
+	 * @param reader - reader to parse content of.
+	 * @param writer - writer to write extracted tags to.
+	 * @throws StateException if HTML parsing map can't be created.
+	 */
 	public Parser(BufferedReader reader, BufferedWriter writer) throws StateException {
 		this.reader = reader;
 		this.writer = writer;
 		this.map = createMap();
 	}
 
+	/**
+	 * Create new {@link TransitionMap} suitable for extracting {@code <img>} and
+	 * {@code <video>} tags from HTML.
+	 *
+	 * @return {@link TransitionMap} prepared to extract tags from HTML.
+	 * @throws StateException if HTML parsing map can't be created.
+	 */
 	private TransitionMap<Character> createMap() throws StateException {
 		TransitionMap<Character> map = new TransitionMap<Character>();
 
@@ -118,6 +136,12 @@ public class Parser {
 		return map;
 	}
 
+	/**
+	 * Parse content of reader and write extracted tags to writer.
+	 *
+	 * @throws StateException if map used to parse content is missing some state.
+	 * @throws IOException    thrown by any transition action.
+	 */
 	public void parse() throws StateException, IOException {
 		StateHandler<Character> stateHandler = new StateHandler<Character>(ParserState.NONE);
 		String line;

@@ -9,6 +9,13 @@ import javax.xml.transform.*;
 import simpleservlet.base.*;
 import simpleservlet.util.*;
 
+/**
+ * Servlet that extracts sources of {@code <img>} and {@code <video>} tags from
+ * HTML passed to it in request's content. Response is populated with HTML
+ * template filled with tags extracted from request.
+ *
+ * @see simpleservlet.util.RequestTransform
+ */
 public class ServletDumpMedia extends BaseServlet {
 	private void transform(HttpServletRequest request, HttpServletResponse response) throws IOException, TransformerException {
 		response.setContentType("text/html");
