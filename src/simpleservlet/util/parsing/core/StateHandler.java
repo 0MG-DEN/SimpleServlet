@@ -63,7 +63,7 @@ public class StateHandler<Item> {
 	}
 
 	/**
-	 * Check whether current state has input state, i.e. bitwise overlaps.
+	 * Check whether current flags has input flag, i.e. bitwise overlaps.
 	 *
 	 * @param flag - flag to compare against.
 	 * @return Flag indicating whether current flags bits fully overlap input.

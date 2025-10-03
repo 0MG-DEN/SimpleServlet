@@ -42,7 +42,7 @@
 		</multipart-config>
 	</servlet>
 
-	<!-- Filter Mapping -->
+	<!-- Servlet Mapping -->
 	<servlet-mapping>
 		<servlet-name>ServletIndex</servlet-name>
 		<url-pattern>/index</url-pattern>
