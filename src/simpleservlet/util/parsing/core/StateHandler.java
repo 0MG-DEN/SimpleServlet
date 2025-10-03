@@ -50,7 +50,7 @@ public class StateHandler<Item> {
 	 * @return Flag indicating whether current state bits fully overlap input.
 	 */
 	public boolean hasState(int state) {
-		return (value & state) == state;
+		return (value & state) == state; // TODO: Replace with ==.
 	}
 
 	/**

@@ -8,20 +8,15 @@ package simpleservlet.util.parsing;
  * <li>[0x0004] TAG_INNER</li>
  * <li>[0x0008] TAG_CLOSE</li>
  *
- * <li>[0x0010] TAG_IMG</li>
  * <li>[0x0020] TAG_IMG_I</li>
  * <li>[0x0040] TAG_IMG_M</li>
  * <li>[0x0080] TAG_IMG_G</li>
  *
- * <li>[0x0100] TAG_IMG_1</li>
- * <li>[0x0200] TAG_VIDEO</li>
  * <li>[0x0400] TAG_VIDEO_V</li>
  * <li>[0x0800] TAG_VIDEO_I</li>
- *
  * <li>[0x1000] TAG_VIDEO_D</li>
  * <li>[0x2000] TAG_VIDEO_E</li>
  * <li>[0x4000] TAG_VIDEO_O</li>
- * <li>[0x8000] TAG_VIDEO_1</li>
  * </ul></code>
  */
 class ParserState {
