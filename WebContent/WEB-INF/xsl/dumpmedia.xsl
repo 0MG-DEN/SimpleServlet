@@ -38,8 +38,16 @@
 
 	<xsl:template match="video[@src]">
 		<xsl:element name="video">
+			<xsl:attribute name="controls"/>
+			<xsl:attribute name="loop"/>
 			<xsl:attribute name="src">
 				<xsl:value-of select="@src"/>
+			</xsl:attribute>
+			<xsl:attribute name="onmouseover">
+				<xsl:text>this.play()</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="onmouseout">
+				<xsl:text>this.pause()</xsl:text>
 			</xsl:attribute>
 		</xsl:element>
 	</xsl:template>
