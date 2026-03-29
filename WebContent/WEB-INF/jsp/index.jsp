@@ -14,7 +14,7 @@
 		<form method="post" enctype="multipart/form-data"
 			action="${pageContext.servletContext.contextPath}/default">
 			<p>
-				<label>Body:</label> <input type="file" name="file" />
+				<label>Body:</label> <input type="file" name="file" multiple />
 			</p>
 			<p>
 				<button type="submit">Send Request</button>
